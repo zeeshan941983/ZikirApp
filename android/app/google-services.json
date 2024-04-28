@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "695662406020",
+    "project_id": "tasbeeh-291a6",
+    "storage_bucket": "tasbeeh-291a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:695662406020:android:e3ac64eedc1c99231815d1",
+        "android_client_info": {
+          "package_name": "com.example.al_zikr"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhSJA-gDXrXKTDXtqcGDn1BGnM6MXlsYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
