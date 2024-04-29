@@ -13,7 +13,9 @@ class ZikirData extends ChangeNotifier {
   String userid = '';
   String roomid = 'no id';
   List<dynamic> doneZikir = [];
-  var uuid = Uuid();
+  String selectRoomZikir = '';
+
+  // var uuid = Uuid();
 /////
   int totalZikir = 0;
   int destinationZikir = 100;
@@ -28,6 +30,11 @@ class ZikirData extends ChangeNotifier {
     loadsaveZikir();
     loadParticipants();
   }
+  getZikirForRoom(String selectzikir) {
+    selectRoomZikir = selectzikir;
+    notifyListeners();
+  }
+
   Future<void> counting() async {
     // var getzikir =
     //     doneZikir.where((element) => element['zikir'][0] == zikirText).toList();
@@ -88,8 +95,8 @@ class ZikirData extends ChangeNotifier {
   }
 
   /////////room
-  Future<void> createRoom(
-      String roomName, String leaderName, String userid) async {
+  Future<void> createRoom(String roomName, String leaderName, String userid,
+      int distination, String zikir) async {
     CollectionReference rooms = _firestore.collection('rooms');
     DocumentReference roomRef = rooms.doc();
     String roomId = roomRef.id;
@@ -107,6 +114,8 @@ class ZikirData extends ChangeNotifier {
     await roomRef.set({
       'name': roomName,
       'leader': leaderName,
+      "Zikir": zikir,
+      "destinationZikir": distination,
       'id': roomId,
       "userid": userid,
       'participants': participants,

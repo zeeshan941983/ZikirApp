@@ -1,13 +1,14 @@
-import 'package:al_zikr/CustomContainer.dart';
-import 'package:al_zikr/DetailsScreen.dart';
-import 'package:al_zikr/provider.dart';
+import 'package:al_zikr/utils/CustomContainer.dart';
+import 'package:al_zikr/Screens/DetailsScreen.dart';
+import 'package:al_zikr/Backend/provider.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
 class Zikir_page extends StatefulWidget {
-  const Zikir_page({super.key});
+  final bool isfromtasbeeh;
+  const Zikir_page({super.key, required this.isfromtasbeeh});
 
   @override
   State<Zikir_page> createState() => _Zikir_pageState();
@@ -36,18 +37,22 @@ class _Zikir_pageState extends State<Zikir_page> {
 
                     return GestureDetector(
                       onTap: () {
-                        value.count = 0;
-                        value.getcurrentZikr({
-                          'zikir': [
-                            zikir,
-                            translation,
-                            {'count': 0}, // Set the count to 0 initially
-                            {
-                              "benefits": [urdu, english]
-                            }
-                          ],
-                        });
-                        Navigator.pop(context);
+                        if (widget.isfromtasbeeh == true) {
+                          value.count = 0;
+                          value.getcurrentZikr({
+                            'zikir': [
+                              zikir,
+                              translation,
+                              {'count': 0},
+                              {
+                                "benefits": [urdu, english]
+                              }
+                            ],
+                          });
+                        } else {
+                          value.getZikirForRoom(zikir);
+                          Navigator.pop(context);
+                        }
                       },
                       child: Stack(
                         children: [

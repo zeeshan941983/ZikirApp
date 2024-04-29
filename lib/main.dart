@@ -1,8 +1,7 @@
-import 'package:al_zikr/Navigation.dart';
-import 'package:al_zikr/auth/Services.dart';
-import 'package:al_zikr/auth/login.dart';
+import 'package:al_zikr/Backend/auth/Services.dart';
+import 'package:al_zikr/Backend/auth/login.dart';
 import 'package:al_zikr/firebase_options.dart';
-import 'package:al_zikr/provider.dart';
+import 'package:al_zikr/Backend/provider.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 

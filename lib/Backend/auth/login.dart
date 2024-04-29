@@ -1,5 +1,5 @@
-import 'package:al_zikr/Navigation.dart';
-import 'package:al_zikr/auth/Services.dart';
+import 'package:al_zikr/utils/Navigation.dart';
+import 'package:al_zikr/Backend/auth/Services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

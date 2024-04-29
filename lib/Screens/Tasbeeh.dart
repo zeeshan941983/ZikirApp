@@ -1,5 +1,5 @@
-import 'package:al_zikr/provider.dart';
-import 'package:al_zikr/zikir_page.dart';
+import 'package:al_zikr/Backend/provider.dart';
+import 'package:al_zikr/Screens/zikir_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -50,7 +50,9 @@ class _TasbeehScreenState extends State<TasbeehScreen> {
                           onPressed: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const Zikir_page())),
+                                  builder: (context) => const Zikir_page(
+                                        isfromtasbeeh: true,
+                                      ))),
                           child: Text(
                             "Select a zikr",
                             style: TextStyle(

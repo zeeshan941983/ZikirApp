@@ -1,8 +1,12 @@
-import 'package:al_zikr/zikir_page.dart';
+import 'package:al_zikr/Screens/RoomMain.dart';
+import 'package:al_zikr/Screens/zikir_page.dart';
+import 'package:al_zikr/utils/CustomContainer.dart';
+import 'package:al_zikr/utils/Navigation.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 
 class zikirRoom extends StatefulWidget {
   final String roomid;
@@ -19,9 +23,36 @@ class _zikirRoomState extends State<zikirRoom> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    bool yes = false;
     return Scaffold(
+      backgroundColor: const Color(0xffEADBC8),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              showAdaptiveDialog(
+                  barrierDismissible: true,
+                  context: context,
+                  builder: (_) => AlertDialog.adaptive(
+                        title: const Text('Exit Room'),
+                        content: const Text('Are You Sure to Exit?'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                              },
+                              child: const Text("Yes")),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text("No"))
+                        ],
+                      ));
+            },
+            icon: const Icon(Icons.logout_rounded)),
         title: Text(widget.roomid),
+        backgroundColor: const Color(0xffEADBC8),
       ),
       body: StreamBuilder<DocumentSnapshot>(
         stream: FirebaseFirestore.instance
@@ -69,6 +100,7 @@ class _zikirRoomState extends State<zikirRoom> {
               //         ),
               //       )
               //     : const Text(''),
+
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -77,14 +109,21 @@ class _zikirRoomState extends State<zikirRoom> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text('Total Users: $totalUser'),
-                        Text(snapshot.data!['name']),
+                        Text('DestinationZikir : ${data['destinationZikir']}'),
                         Text('Total Zikir: $totalCount'.toString()),
                       ],
                     ),
                   ],
                 ),
               ),
-
+              CustomContainer(
+                  data: Center(
+                      child: Text(
+                totalCount == int.parse(data['destinationZikir'].toString())
+                    ? "جَزَاكَ الله Zikir is Done"
+                    : snapshot.data!['Zikir'],
+                style: const TextStyle(fontFamily: 'arabic', fontSize: 30),
+              ))),
               Expanded(
                 child: Stack(
                   children: [
@@ -171,8 +210,19 @@ class _zikirRoomState extends State<zikirRoom> {
                                             const MaterialStatePropertyAll(
                                                 Color(0xffEADBC8))),
                                     onPressed: () {
-                                      updateCurrentUserZikirCount(
-                                          snapshot.data!);
+                                      if (totalCount !=
+                                          int.parse(data['destinationZikir']
+                                              .toString())) {
+                                        updateCurrentUserZikirCount(
+                                            snapshot.data!);
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Center(
+                                              child: Text("Zikir is done")),
+                                          backgroundColor: Colors.green,
+                                        ));
+                                      }
                                     },
                                     child: const Text('')),
                               ),

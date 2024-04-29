@@ -1,6 +1,6 @@
-import 'package:al_zikr/Home.dart';
-import 'package:al_zikr/Tasbeeh.dart';
-import 'package:al_zikr/RoomMain.dart';
+import 'package:al_zikr/Screens/Home.dart';
+import 'package:al_zikr/Screens/Tasbeeh.dart';
+import 'package:al_zikr/Screens/RoomMain.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:al_zikr/CustomContainer.dart';
-import 'package:al_zikr/provider.dart';
+import 'package:al_zikr/utils/CustomContainer.dart';
+import 'package:al_zikr/Backend/provider.dart';
 
 import 'package:flutter/material.dart';
 
